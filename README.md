@@ -15,7 +15,7 @@ practice Linux
 - | - `echo Hello World | cat >> newfile.txt` - adds message to file
 - head - lists 1st 10 lines in file 
 - tail - lists last 10 lines in file 
-- wc - counts newline, word, character, byte, maximum line length in file - wc newcopy2.txt
+- wc - counts lines, words, characters in file - wc newcopy2.txt
 - clear - clears screen
 - ctrl + c - cancels line
 - exit - exits terminal
