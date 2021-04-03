@@ -30,7 +30,24 @@ cat | prints content in file | `cat newcopy2.txt` / `cat >` outputs to new file 
 head | lists 1st 10 lines in file | `head file.txt` / `head -20 file.txt` - view 20 lines
 tail | lists last 10 lines in file | `tail file.txt`
 
-`|` - piping - output one cmd/prog and inputs to another / `ls -al | cat > lsout.txt` (list files in current dir inside lsout.txt) / `echo Hello World | cat >> newfile.txt` - adds message to bottom of newfile.txt 
+`|` - piping - output one cmd/prog and inputs to another 
+- `ls -al | cat > lsout.txt` (list files in current dir inside lsout.txt)
+- `echo Hello World | cat >> newfile.txt` - adds message to bottom of newfile.txt 
+
+grep searches files for keywords | `grep keyword file.txt` 
+- -c - how many lines matched
+- -n - matches and line number
+- -i - case insensitive 
+- -V - invert match, find all lines that dont match
+- -l - only show the filenames of the files that matched
+- -r - recursive - search all files in dir
+- -o - only print matching part of the line, not whole line
+- -a - search binaries - treat binary data like its text instead of ignoring it
+- -F - don't treat the match string as a regex 
+- -E - extended support of meta characs, escapes these special characters by default ([use if you want regexps like '.+' to work, otherwise you need to use '.\+'](https://wizardzines.com/comics/grep/)
+- `grep -A 3 keyword` shows 3 lines of context after a match
+- ([avoid egrep and fgrep](https://linuxhandbook.com/grep-egrep-fgrep/))
+- grep alternatives - ack, ag, ripgrep - better for searching code
 
 
 ## Extras
@@ -55,7 +72,6 @@ which | find out if app/cmd is installed | which appname
 whatis | short info about a cmd | whatis pushd 
 whereis | locate binary file, get source, man page, location of file
 whoami | displays username
-egrep or grep | searches and prints every line with keyword | `egrep 'keyword' file.txt` / -c - how many lines matched, -n - matches and line number 
 ps | lists processes running on terminal | ps aux 
 top | processes running the most resources
 kill | used to end process | kill -15 (PID#) / kill (PID#) - PID - process ID #, listed under ps or top 
