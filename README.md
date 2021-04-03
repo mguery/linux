@@ -168,7 +168,7 @@ fi
 
 
 ```bash
-myVar = (var)
+myVar=(var)
 
 if ["$myVar" -gt 18] && ["$age" -lt 40]
 then
