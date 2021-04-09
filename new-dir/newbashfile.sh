@@ -23,7 +23,7 @@ $* - All of the command line arguments.
 
 run this - ./newbashfile.sh bob fred sally'
 
-# another sameple script
+# another sample script
 lines=`cat $1 | wc -l` # this saves input into a var
 echo The number of lines in the file $1 is $lines
 :'run - ./newbashfile.sh newcopy2.txt'
