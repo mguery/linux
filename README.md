@@ -20,7 +20,7 @@ pwd | print working directory - full path/absolute path
 cd | change directory | `cd /dir` `cd ..` (up one lvl) `cd ~` (goes to home dir)
 mkdir | create dir | mkdir newdir / `mkdir newdir1 newdir2 newdir3` `mkdir newDir && cd newDir` (creates dir and cd to it) `mkdir -p newDir/{subDir1,subDir2}` (creates a dir and sub dirs inside dir)
 touch | create file | `touch newfile.txt`
-rm | deletes dir or file | `rm dir` / `rm file.txt` / `rm -r newdir` (dels dir) 
+rm | removes/deletes dir or file | `rm dir` / `rm file.txt` / `rm -r newdir` (dels dir) 
 rmdir | removes empty dir | `rmdir dir1` / `rmdir *` (all empty dir del)
 cp | copy file/dir from 1 loc to another | `cp oldfile.txt /dir2/newfile.txt` (copy, rename, move to another dir) / `cp ~/.bashrc bashrc` (cp from home to current dir) 
 mv | renames file | `mv newcopy.txt newcopy2.txt`
@@ -55,9 +55,9 @@ grep searches files for keywords | `grep keyword file.txt`
 cmd | info | examples
 --- | --- | ---
 -h or --help | short desc / long desc with options of a cmd | pushd -h / mkdir --help
-man | manual/man pages - desc, name, options | man appname
+man | manual/man pages - about the command (desc, name, options) | man appname
 more | prints content in file / spacebar to go page to page | `more newfile.txt` 
-less | use arrows to read content 
+less | use arrows to read content page by page, 'q' to exit | `less file.txt`
 sed | stream editor - find and replace keyword | `sed 's/mysql/MySQL/g file.txt > newfile.txt'` / s - substitute, g - everywhere/replace globally, '>' - to save results to newfile  / replace 'g' with a number and will replace that occurence of the word (`sed s/mysql/MySQL/2` = 2nd occurence replaced)
 pushd | jump from current dir to another | pushd /dir
 popd | back to last dir used after pushd cmd
@@ -80,13 +80,18 @@ fg | moves a background process into the foreground | fg (job #)
 ctrl + z | pauses process and moves to bg
 passwd | changes password
 df | total storage in sys | `df -h` 
+ln | link files together, [content in 1st file is updated in 2nd file](https://www.freecodecamp.org/news/the-linux-commands-handbook/#the-linux-ln-command) | `ln -s file.txt newfile.txt`
 info | simple info page | info cmd
 apropos | searches and lists cmds related to that cmd | apropos cmd
 uname -a | info about kernel version and name, hostname, OS, date and time
 uptime | time, # of users, load, up for # of hours 
+gzip | compresses file, [more info](https://www.freecodecamp.org/news/the-linux-commands-handbook/#the-linux-gzip-command) | `gzip -c filename > filename.gz` `gzip -d filename.gz` (decompress)
 last | all logins and reboots in the system
+mail | create/send an email from [Linux mail prog](https://www.interserver.net/tips/kb/linux-mail-command-usage-examples/) | `echo "body of email" | mail -s "subject here" name@gmail.com` or `mail -s "subject here" name@gmail.com < /dir/email.txt`
 
-advanced - [regular expressions](https://ryanstutorials.net/linuxtutorial/grep.php#reoverview)
+advanced 
+- [regular expressions](https://ryanstutorials.net/linuxtutorial/grep.php#reoverview)
+- [aliases](https://www.freecodecamp.org/news/the-linux-commands-handbook/#the-linux-alias-command)
 
 ## Shortcuts
 
