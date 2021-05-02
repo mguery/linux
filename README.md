@@ -135,9 +135,11 @@ For more info - [chmod Command in Linux](https://linuxize.com/post/chmod-command
 4. `chmod a=rx file.txt` (same as ugo, all users have rx perms)
 5. `chmod ugo+rwx file.txt` (all perms to all users)
 
+---
+
 ## Bash scripting
 
-- Begin with `#!/bin/bash` (saved as .sh file by default). / `#!/bin/bash -x` - debugging (remove later) / place in script, then run file in terminal:
+- Begin with `#!/bin/bash` (means it's executable, saved as .sh file by default). / `#!/bin/bash -x` - debugging (remove later) / place in script, then run file in terminal:
 ```bash
 set -x 
 (what you want to debug) 
@@ -206,3 +208,47 @@ Can also use:
 - `[ ... || ... ]`
 - `[ ... ] || [ ... ]`
 
+---
+
+## SSH
+
+RSA 2048-bit encryption, which is comparative to a 617 digit long password. More secure than passwords.
+
+SSH keys are made up of a private key and a public key. Never share private key. If key is exposed, generate a new ssh key pair.
+
+Can choose to either lock your private key with a passphrase. creating a key pair without a passphrase is more convenient and potentially essential for certain scripts and automation tasks. But it's also less secure. Generate a separate key pair for each service or connection you want to use, adding a passphrase only for critical services.
+
+By default you private key is stored at /Users/myname/.ssh/id_rsa and your public key  The private key - id_rsa - should never be shared
+
+Public keys (id_rsa.pub) are meant to be shared or placed on a remote server. It's stored at /Users/myname/.ssh/id_rsa.pub. The private key is stored at /Users/myname/.ssh/id_rsa.
+
+To generate a key - `ssh-keygen`
+
+~/.ssh/id_rsa 
+~/.sshid_rsa.pub - public key goes into server "authorized_keys" file
+
+To connect to server - `ssh name@ip.address.here` or `ssh name@server.domainname.com`, enter the servers password to authenticate (not local machine)
+
+To add public key and enable pw-less login `ssh-copy-id user@host`
+
+**Create a alias**
+cd ~/.ssh 
+vi ~/.ssh/config 
+
+```
+Host examplehost
+  HostName <domain or ip>
+  Port <port #>
+  User <marjy>
+```
+
+You can SSH into the systems with commands `ssh examplehost`
+
+**Github**
+Go to Settings, then ssh and gpg keys, add new, add your public key (ls to view files, cat id_rsa.pub), copy full key and paste in gh
+
+Cloning with ssh - `git clone <git@github.com link>`
+
+**Resources**
+- [ssh tutorial](https://youtu.be/hQWRp-FdTpc) 
+- [ssh cheat sheet](https://gist.github.com/bradtraversy/f03df587f2323b50beb4250520089a9e)
