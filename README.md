@@ -231,24 +231,39 @@ To connect to server - `ssh name@ip.address.here` or `ssh name@server.domainname
 
 To add public key and enable pw-less login `ssh-copy-id user@host`
 
-**Create a alias**
-cd ~/.ssh 
-vi ~/.ssh/config 
+**Create a config file and alias**
+cd .ssh 
+ls to view files, and `touch config`
+vi config 
 
 ```
-Host examplehost
+Host dev
   HostName <domain or ip>
-  Port <port #>
-  User <marjy>
+  Port 22
+  User <username>
+  IdentityFile ~/.ssh/id_rsa
 ```
 
-You can SSH into the systems with commands `ssh examplehost`
+You can now SSH into the systems with this command `ssh dev`
+
+SSH Tunneling 
+Access resources on remote server or allow acccess to your local resources to someone else. (Creating a tunnel to ssh to a machine and forward data from one port to another). Need a ssh client (work) and ssh server (home)
+
+Setup public SSH Server
+**Local Port Forwarding** - access remote resources that you can't access, internal remote database, RDP
+`ssh -L local_port:remote_address:remote_port username@sshserver` 
+Ex. `ssh -L 8888:192.168.1.3:8080 44.11.22.33`
+
+**Remote Port Forwarding** - other ppl to have access to local resources they don't have access to, eg. local web server
+`ssh -R remote_port:local_address:local_port username@sshserver`
+Ex. `ssh -R 8888:10.0.0.3:8080 44.11.22.33`
+The ssh server  config /etc/ssh/sshd_config should have a property GatewayPorts yes
 
 **Github**
-Go to Settings, then ssh and gpg keys, add new, add your public key (ls to view files, cat id_rsa.pub), copy full key and paste in gh
-
-Cloning with ssh - `git clone <git@github.com link>`
+Go to Settings, then ssh and gpg keys, add new, add your public key (ls to view files, cat id_rsa.pub), copy full key and paste in gh. Cloning with ssh - `git clone <git@github.com link>`
 
 **Resources**
 - [ssh tutorial](https://youtu.be/hQWRp-FdTpc) 
 - [ssh cheat sheet](https://gist.github.com/bradtraversy/f03df587f2323b50beb4250520089a9e)
+- [ssh tunneling explained](https://youtu.be/AtuAdk4MwWw)
+- [ssh tunneling tutorial](https://youtu.be/N8f5zv9UUMI)
