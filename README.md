@@ -5,6 +5,7 @@ practice Linux - [repl.it](https://repl.it), [Git for Windows](https://gitforwin
 - `~` home dir
 - `$` standard user
 - `#` root user 
+- period - current directory
 - switches: -l = long list / -la = full details (perms, date, user) / -a = all - `ls -a` 
 - Linux is case sensitive 
 - spaces in file name - use backslash `\` 
@@ -41,6 +42,7 @@ grep searches files for keywords | `grep keyword file.txt`
 - -V - invert match, find all lines that dont match
 - -l - only show the filenames of the files that matched
 - -r - recursive - search all files in dir
+- -R - `ls -R folder-name` lists files and folders inside folder-name
 - -o - only print matching part of the line, not whole line
 - -a - search binaries - treat binary data like its text instead of ignoring it
 - -F - don't treat the match string as a regex 
@@ -107,6 +109,7 @@ ctrl + k | removes all text after cursor, ctrl + y to paste erased text
 ctrl + a | moves cursor to beginning of line
 ctrl + e | moves cursor to end of line
 ctrl + r | and then type 1st few letters from previous cmds - searches for cmds used, press enter to run or Esc to end search
+up / down arrow | scroll through previous commands
 exit | exits terminal 
 
 ### File permissions
