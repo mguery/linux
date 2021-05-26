@@ -1,4 +1,4 @@
-# Linux notes
+# Notes on Linux commands, Bash, SSH
 
 practice Linux - [repl.it](https://repl.it), [Git for Windows](https://gitforwindows.org/), Visual Studio Code, [Powershell](https://www.microsoft.com/en-us/p/powershell/9mz1snwt0n5d?activetab=pivot:overviewtab) 
 
@@ -18,13 +18,13 @@ cmd | info | examples
 dir | lists directories and files in current dir | dir / dir yourDirName
 ls | list storage / lists files or folders in current dir | `ls` / `ls new-dir` / ls -a (all hidden files) / `ls -d` lists dir / `ls -s` lists file size / `ls -S` sorts by file size / `ls -t` sorts by time and date / `ls -x` sorts by extension size 
 pwd | print working directory - full path/absolute path
-cd | change directory | `cd /dir` `cd ..` (up one lvl) `cd ~` (goes to home dir)
-mkdir | create dir | mkdir newdir / `mkdir newdir1 newdir2 newdir3` `mkdir newDir && cd newDir` (creates dir and cd to it) `mkdir -p newDir/{subDir1,subDir2}` (creates a dir and sub dirs inside dir)
+cd | change directory | `cd` (goes to home folder) `cd /dir` `cd ..` (up one lvl) `cd ~` (goes to home dir) `cd -` (goes back to last folder used)
+mkdir | create dir | `mkdir newdir` / `mkdir newdir1 newdir2 newdir3` (creates 3 dirs) `mkdir newDir && cd newDir` (creates dir and cd to it) `mkdir -p newDir/{subDir1,subDir2}` (creates a dir and sub dirs inside dir)
 touch | create file | `touch newfile.txt`
-rm | removes/deletes dir or file | `rm dir` / `rm file.txt` / `rm -r newdir` (dels dir) 
+rm | removes/deletes dir or file | `rm dir` / `rm file.txt` / `rm -r newdir` (dels dir) / `rm file?.txt` (dels file1, file2, file3, etc)
 rmdir | removes empty dir | `rmdir dir1` / `rmdir *` (all empty dir del)
 cp | copy file/dir from 1 loc to another | `cp oldfile.txt /dir2/newfile.txt` (copy, rename, move to another dir) / `cp ~/.bashrc bashrc` (cp from home to current dir) 
-mv | renames file | `mv newcopy.txt newcopy2.txt`
+mv | renames file | `mv newcopy.txt newcopy2.txt` / `mv *.txt dir` (moves all txt files to dir) `mv dir/* .` (moves files in dir to current folder)
 echo | prints message | `echo Hello World` 
 cat | prints content in file | `cat newcopy2.txt` / `cat >` outputs to new file created or replaces old text if file already exists - `cat > file2.txt` / `ls -al / > file.txt` (full filesystem and hidden files) / `cat >>` - appends to bottom - `cat >> newfile.txt` // ctrl + d - done - after typing text (cat > newfile.txt)
 2> | redirects error msgs | `ls -l video.mpg blah.foo 2> errors.txt` / see 'STDERR' / `echo > file.txt 2>&1` - sends standard output and errors to file
@@ -36,20 +36,23 @@ tail | lists last 10 lines in file | `tail file.txt`
 - `echo Hello World | cat >> newfile.txt` - adds message to bottom of newfile.txt 
 
 grep searches files for keywords | `grep keyword file.txt` 
-- -c - how many lines matched
-- -n - matches and line number
-- -i - case insensitive 
-- -V - invert match, find all lines that dont match
-- -l - only show the filenames of the files that matched
-- -r - recursive - search all files in dir
-- -R - `ls -R folder-name` lists files and folders inside folder-name
-- -o - only print matching part of the line, not whole line
-- -a - search binaries - treat binary data like its text instead of ignoring it
-- -F - don't treat the match string as a regex 
-- -E - extended support of meta characs, escapes these special characters by default ([use if you want regexps like '.+' to work, otherwise you need to use '.\+'](https://wizardzines.com/comics/grep/)
-- `grep -A 3 keyword` shows 3 lines of context after a match
-- ([avoid egrep and fgrep](https://linuxhandbook.com/grep-egrep-fgrep/))
-- grep alternatives - ack, ag, ripgrep - better for searching code
+
+- grep options:
+  - -c - how many lines matched
+  - -n - matches and line number
+  - -i - case insensitive `grep -ni "keyword" file.txt`
+  - -V - invert match, find all lines that dont match
+  - -l - only show the filenames of the files that matched
+  - -r - recursive - search all files in dir
+  - -R - `ls -R folder-name` lists files and folders inside folder-name
+  - -o - only print matching part of the line, not whole line
+  - -a - search binaries - treat binary data like its text instead of ignoring it
+  - -F - don't treat the match string as a regex 
+  - -E - extended support of meta characs, escapes these special characters by default ([use if you want regexps like '.+' to work, otherwise you need to use '.\+'](https://wizardzines.com/comics/grep/)
+  - `grep -A 3 keyword` shows 3 lines of context after a match
+  - `cat auth.log | grep "keyword" | awk '{print $4}' | sort -u > file.txt` prints sorted list from column 4 from the auth.log file to file.txt,   
+  - ([avoid egrep and fgrep](https://linuxhandbook.com/grep-egrep-fgrep/))
+  - grep alternatives - ack, ag, ripgrep - better for searching code
 
 
 ## Extras
@@ -83,10 +86,11 @@ ctrl + z | pauses process and moves to bg
 passwd | changes password
 df | total storage in sys | `df -h` 
 ln | link files together, [content in 1st file is updated in 2nd file](https://www.freecodecamp.org/news/the-linux-commands-handbook/#the-linux-ln-command) | `ln -s file.txt newfile.txt`
-info | simple info page | info cmd
-apropos | searches and lists cmds related to that cmd | apropos cmd
+info | simple info page | `info cmd`
+apropos | searches and lists cmds related to that cmd | `apropos cmd`
 uname -a | info about kernel version and name, hostname, OS, date and time
 uptime | time, # of users, load, up for # of hours 
+tar | `tar caf myfile.tar.gz myDirectory` myDirectory is compressed to tar.gz folder
 gzip | compresses file, [more info](https://www.freecodecamp.org/news/the-linux-commands-handbook/#the-linux-gzip-command) | `gzip -c filename > filename.gz` `gzip -d filename.gz` (decompress)
 last | all logins and reboots in the system
 mail | create/send an email from [Linux mail prog](https://www.interserver.net/tips/kb/linux-mail-command-usage-examples/) | `echo "body of email" | mail -s "subject here" name@gmail.com` or `mail -s "subject here" name@gmail.com < /dir/email.txt`
@@ -99,44 +103,62 @@ advanced
 
 shortcut | what it does
 --- | ---
-Tab | autocompletes file or dir name 
-clear or ctrl + l | clears screen
+Tab | tab completion - autocompletes file or dir name 
+ctrl + shift + c | copies from clipboard
+ctrl + shift + v | pastes from clipboard
 ctrl + c | stops/cancels program running
 ctrl + d | done - after typing text (cat > newfile.txt)
 ctrl + - / ctrl + | larger/smaller text
-ctrl + u | removes all text before cursor, ctrl + y to paste erased text
-ctrl + k | removes all text after cursor, ctrl + y to paste erased text 
+ctrl + u | cuts all text before cursor, ctrl + y to paste cropped text
+ctrl + k | cuts all text after cursor, ctrl + y to paste cropped text 
 ctrl + a | moves cursor to beginning of line
 ctrl + e | moves cursor to end of line
 ctrl + r | and then type 1st few letters from previous cmds - searches for cmds used, press enter to run or Esc to end search
+ctrl + left / right arrow | moves left / right 1 word
 up / down arrow | scroll through previous commands
+`clear` or ctrl + l | clears screen
 exit | exits terminal 
 
 ### File permissions
 View files and perms with 'ls -l'. File perms are in 1st col. 
 - Example: `drwxr-xr-x`. 1st charac is the file type. d = dir or '-' for file 
--- r = readable means can view file, w = writable means can edit/del file, x = executable means can execute and access file/dir. 
--- rwx means full access and a dash means no access given.  
+  - r = readable means can view file, w = writable means can edit/del file, x = executable means can execute and access file/dir. 
+  - rwx means full access and a dash means no access given.  
 
 - There are 3 sets - user, group, others (UGO). 
--- 1st set/1st 4 chars - 'drwx' in this dir, user/owner has full rwx perms. 
--- 2nd set/5-7th chars - 'r-x' - this group can read (r) and execute (x) but not write (w). 
--- 3rd set/8-10th chars - 'r-x' - all other users can read (r) and execute (x) but not write (w).
--- r = 4 bits, w = 2 bits, x = 1 bit = 4+2+1 = 7 bits / rwx = 777 = full access / 774 = all perms to user and group, read perms to others / 766 = user has rwx, all others and group rw only (4+2=6)
+  - 1st set/1st 4 chars - 'drwx' in this dir, user/owner has full rwx perms. 
+  - 2nd set/5-7th chars - 'r-x' - this group can read (r) and execute (x) but not write (w). 
+  - 3rd set/8-10th chars - 'r-x' - all other users can read (r) and execute (x) but not write (w).
+  - r = 4 bits, w = 2 bits, x = 1 bit = 4+2+1 = 7 bits / rwx = 777 = full access / 774 = all perms to user and group, read perms to others / 766 = user has rwx, all others and group rw only (4+2=6)
 
 For more info - [chmod Command in Linux](https://linuxize.com/post/chmod-command-in-linux/) and [commands with examples](https://tecadmin.net/chmod-command-in-linux-with-examples/)
 
 - chmod - change perms/mode, root user or file owner only. | `chmod 774 file.txt`
 - UGO (text) method instead of numeric (777)
 - References: (u) user, (g) group, (o) others
-- Operators: - = removes, + = adds, = sets
-- Modes: (r) read, (w) write, (x) execute
-- Examples:
-1. `chmod u-w file.txt` (removes w perm for user) 
-2. `chmod u+x, o+x file.txt` (user and others can execute to file.txt)
-3. `chmod ugo=rx file.txt` (everyone has rx perms)
-4. `chmod a=rx file.txt` (same as ugo, all users have rx perms)
-5. `chmod ugo+rwx file.txt` (all perms to all users)
+- Operators: - means removes, + means adds, = means sets/assigns
+- Modes: (r) read, (w) write, (x) execute, (a) all
+
+Examples:
+  1. `chmod u-w file.txt` (removes w perm for user) 
+  2. `chmod u+x, o+x file.txt` (user and others can execute to file.txt)
+  3. `chmod ugo=rx file.txt` (everyone has rx perms)
+  4. `chmod a=rx file.txt` (same as ugo, all users have rx perms)
+  5. `chmod ugo+rwx file.txt` (all perms to all users)
+
+Tables from LinkedIn Learning course
+References | Read (4) | Write (2) | Execute (1) | Result
+--- | --- | --- | --- | --- |
+Users | r | w | x | 7
+Groups | r | - | x | 5
+Others | r | - | - | 4 
+
+References | Read | Write | Execute | Result
+--- | --- | --- | --- | --- |
+Users | + | + | + | u+rwx
+Groups | = | - | - | g=r
+Others | - | - | - | o-rwx 
+All | | | | a+rwx
 
 ---
 
