@@ -35,7 +35,7 @@ tail | lists last 10 lines in file | `tail file.txt`
 - `ls -al | cat > lsout.txt` (list files in current dir inside lsout.txt)
 - `echo Hello World | cat >> newfile.txt` - adds message to bottom of newfile.txt 
 
-grep searches files for keywords | `grep keyword file.txt` 
+global regular expression print. grep searches files for keywords | `grep keyword file.txt` 
 
 - grep options:
   - -c - how many lines matched
@@ -90,6 +90,7 @@ info | simple info page | `info cmd`
 apropos | searches and lists cmds related to that cmd | `apropos cmd`
 uname -a | info about kernel version and name, hostname, OS, date and time
 uptime | time, # of users, load, up for # of hours 
+awk | prints selected line | `awk '{print}' file.txt` / `awk '{print $1,$2,$NF}' file.txt` (prints 1st, 2nd, last line)
 tar | `tar caf myfile.tar.gz myDirectory` myDirectory is compressed to tar.gz folder
 gzip | compresses file, [more info](https://www.freecodecamp.org/news/the-linux-commands-handbook/#the-linux-gzip-command) | `gzip -c filename > filename.gz` `gzip -d filename.gz` (decompress)
 last | all logins and reboots in the system
