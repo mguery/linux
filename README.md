@@ -16,7 +16,7 @@ practice Linux - [repl.it](https://repl.it), [Git for Windows](https://gitforwin
 cmd | info | examples
 --- | --- | ---
 dir | lists directories and files in current dir | dir / dir yourDirName
-ls | list storage / lists files or folders in current dir | `ls` / `ls new-dir` / ls -a (all hidden files) / `ls -d` lists dir / `ls -s` lists file size / `ls -S` sorts by file size / `ls -t` sorts by time and date / `ls -x` sorts by extension size 
+ls | list storage / lists files or folders in current dir | `ls` / `ls new-dir` or `ls /bin` / `ls -a` (all hidden files) / `ls -d` lists dir / `ls -s` lists file size / `ls -S` sorts by file size / `ls -t` sorts by time and date / `ls -x` sorts by extension size / `ls $HOME | wc -l` count # of visible items in home dir ($)
 pwd | print working directory - full path/absolute path
 cd | change directory | `cd` (goes to home folder) `cd /dir` `cd ..` (up one lvl) `cd ~` (goes to home dir) `cd -` (goes back to last folder used)
 mkdir | create dir | `mkdir newdir` / `mkdir newdir1 newdir2 newdir3` (creates 3 dirs) `mkdir newDir && cd newDir` (creates dir and cd to it) `mkdir -p newDir/{subDir1,subDir2}` (creates a dir and sub dirs inside dir)
@@ -38,12 +38,16 @@ tail | lists last 10 lines in file | `tail file.txt`
 global regular expression print. grep searches files for keywords | `grep keyword file.txt` 
 
 - grep options:
+  - `grep keyword filename` - prints all lines containing the keyword
+  - `grep '\!$' filename` - using regular expression to match lines ending in a !
+  - --color=always - highlight matched text in color
   - -c - how many lines matched
   - -n - matches and line number
   - -i - case insensitive `grep -ni "keyword" file.txt`
-  - -V - invert match, find all lines that dont match
+  - -v - invert match, find all lines that don't match reg exp
   - -l - only show the filenames of the files that matched
-  - -r - recursive - search all files in dir
+  - -L - shows names of files that don't contain matching lines
+  - -r - recursive - search all files in dirs and subdirs
   - -R - `ls -R folder-name` lists files and folders inside folder-name
   - -o - only print matching part of the line, not whole line
   - -a - search binaries - treat binary data like its text instead of ignoring it
@@ -74,9 +78,11 @@ sudo updatedb | use to quickly update db if file not found with 'locate'
 apt-get | install/update/upgrade software packages | `apt-get install pkgname` / `apt-get remove pkgname` / `apt-get purge pkgname` - removes pkg and config files / `apt-get update` - update out-of-date pkgs / `apt-get upgrade` - upgrade out-of-date pkgs 
 git clone | clone software | `git clone (github URL)`
 which | find out if app/cmd is installed | which appname
+whois | info about domain name's owner | `whois oreilly.com less`
 whatis | short info about a cmd | whatis pushd 
 whereis | locate binary file, get source, man page, location of file
 whoami | displays username
+wget | d/l file from a website to current dir | `wget http://linuxpocketguide.com/sample.pdf`
 ps | lists processes running on terminal | ps aux 
 top | processes running the most resources
 kill | used to end process | kill -15 (PID#) / kill (PID#) - PID - process ID #, listed under ps or top 
@@ -92,13 +98,52 @@ uname -a | info about kernel version and name, hostname, OS, date and time
 uptime | time, # of users, load, up for # of hours 
 awk | prints selected line | `awk '{print}' file.txt` / `awk '{print $1,$2,$NF}' file.txt` (prints 1st, 2nd, last line)
 tar | `tar caf myfile.tar.gz myDirectory` myDirectory is compressed to tar.gz folder
-gzip | compresses file, [more info](https://www.freecodecamp.org/news/the-linux-commands-handbook/#the-linux-gzip-command) | `gzip -c filename > filename.gz` `gzip -d filename.gz` (decompress)
+zip / unzip | compress or decompress
+gzip | compresses file with GNU Zip, [more info](https://www.freecodecamp.org/news/the-linux-commands-handbook/#the-linux-gzip-command) | `gzip -c filename > filename.gz` `gzip -d filename.gz` or `gunzip` (decompress)
 last | all logins and reboots in the system
-mail | create/send an email from [Linux mail prog](https://www.interserver.net/tips/kb/linux-mail-command-usage-examples/) | `echo "body of email" | mail -s "subject here" name@gmail.com` or `mail -s "subject here" name@gmail.com < /dir/email.txt`
+lpr | line printer - sends file to printer, '# 5' prints 5 pgs ` lpr -P myprinter myfile # 5` 
+mail | create/send an email from [Linux mail prog](https://www.interserver.net/tips/kb/linux-mail-command-usage-examples/) | `echo "body of email" | mail -s "subject here" email@gmail.com` or `mail -s "subject here" name@gmail.com < /dir/email.txt`
 
 advanced 
 - [regular expressions](https://ryanstutorials.net/linuxtutorial/grep.php#reoverview)
 - [aliases](https://www.freecodecamp.org/news/the-linux-commands-handbook/#the-linux-alias-command)
+
+## vim
+
+Enhanced version of vi. 2 modes - insert (enter text) and command (del text, copy/paste and other ops)
+
+cmd | task | example
+--- | --- | ---
+gvim | open editor in new window
+vim | run in existing shell window | `vim` or `vim script.sh`
+i | switch to insert mode then type any text
+ESC | switch to command mode / end command in progress
+: | switch to command line mode
+:wq | save and quit
+:q! | quit w/o saving
+:w | save / save as | `:w filename`
+l or -> | move right
+h or <- | move left
+k or up arrow | move up
+j or down arrow | move down
+w | move to next word
+b | move to prev word
+0 | move to beg of line
+$ | move to end of line 
+^f | move down one screen
+^b | move up one screen
+gg | move to beg of doc
+G | move to end of doc
+x | del next charac
+X | del prev charac
+de | delete next word
+db | del prev word
+dd | del current line
+D | del end of line
+:help | get help / view manual
+:snytax on | turns on syntax highlighting
+vim ~/.vimrc | make certain settings permanent (type w/o colon) | `syntax on`
+
 
 ## Shortcuts
 
@@ -108,7 +153,7 @@ Tab | tab completion - autocompletes file or dir name
 ctrl + shift + c | copies from clipboard
 ctrl + shift + v | pastes from clipboard
 ctrl + c | stops/cancels program running
-ctrl + d | done - after typing text (cat > newfile.txt)
+ctrl + d | terms program / ex. after typing text (cat > newfile.txt)
 ctrl + - / ctrl + | larger/smaller text
 ctrl + u | cuts all text before cursor, ctrl + y to paste cropped text
 ctrl + k | cuts all text after cursor, ctrl + y to paste cropped text 
