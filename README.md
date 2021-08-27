@@ -206,7 +206,11 @@ Groups | = | - | - | g=r
 Others | - | - | - | o-rwx 
 All | | | | a+rwx
 
+
+
 ---
+
+
 
 ## Bash scripting
 
@@ -279,7 +283,11 @@ Can also use:
 - `[ ... || ... ]`
 - `[ ... ] || [ ... ]`
 
+
+
 ---
+
+
 
 ## SSH
 
