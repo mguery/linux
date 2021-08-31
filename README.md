@@ -284,6 +284,31 @@ Can also use:
 - `[ ... ] || [ ... ]`
 
 
+**user input**
+```bash
+echo "Enter your name:"
+read name
+echo "Enter your age:"
+read age
+echo "Hello" $name, "you are" $age "years old"
+```
+
+Read - for user input. Run script, and user inputs name, age. [Notes from](https://devqa.io/bash-script-read-user-input/)
+
+```bash
+read -p "Enter your username: " username
+read -sp "Enter your password: " password
+
+echo -e "\nYour username is $username and Password is $password"
+``` 
+
+- -p prompt a message, displays on screen
+- -sp - doesn't display on screen
+
+**Resources**
+
+- [Bash scripting tut](https://ryanstutorials.net/bash-scripting-tutorial)
+
 
 ---
 
