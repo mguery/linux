@@ -308,6 +308,8 @@ echo -e "\nYour username is $username and Password is $password"
 **Resources**
 
 - [Bash scripting tut](https://ryanstutorials.net/bash-scripting-tutorial)
+- [BASH3 Boilerplate](https://bash3boilerplate.sh/)
+- [Bash Boilerplate](https://github.com/xwmx/bash-boilerplate)
 
 
 ---
